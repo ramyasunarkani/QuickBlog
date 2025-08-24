@@ -6,7 +6,6 @@ import adminRouter from "./routes/adminRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 const app=express();
 
-// dotenv.config();
 
 await connectDB();
 
