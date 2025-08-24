@@ -8,8 +8,25 @@ const app=express();
 
 
 await connectDB();
+const allowedOrigins = [
+  "https://quick-blog-lemon.vercel.app", // your frontend (Vercel)
+  "http://localhost:3000"                // for local development
+];
 
-app.use(cors());
+pp.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
+app.options("*", cors());
+
 app.use(express.json());
 
 app.get('/',(req,res)=>{
