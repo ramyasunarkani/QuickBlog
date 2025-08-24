@@ -10,23 +10,7 @@ const app=express();
 
 await connectDB();
 
-const allowedOrigins = [
-  "https://quick-blog-five-olive.vercel.app", // frontend (vercel)
-  "http://localhost:5173"                     // local dev (vite/react)
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-
+app.use(cors());
 app.use(express.json());
 
 app.get('/',(req,res)=>{
