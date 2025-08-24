@@ -13,7 +13,7 @@ const allowedOrigins = [
   "http://localhost:3000"                // for local development
 ];
 
-pp.use(cors({
+app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
